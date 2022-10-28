@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<stdlib.h>
+void create_linked_list();
+void display();
+void sum();
+void search(int);
+void count();
+struct node
+{
+    int data;
+    struct node *next;
+};
+ struct node node,*start,*end,*temp;
+int main()
+{
+   
+    int ch,n;
+    while(1)
+    {
+    printf("1.Add element\n2.Display\n3.Sum of elements inserted\n4.Search an element\n5.Count no. of elements\n6.Exit\n");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1:
+           create_linked_list();
+           break;
+        case 2:
+           display();
+           break;
+        case 3:
+            sum();
+           break;
+        case 4:
+           printf("Enter the value to search:");
+           scanf("%d",&n);
+           search(n);
+           break;
+        case 5:
+           count();
+           break;
+        case 6:
+           printf("!!EXIT!!");
+           exit(0);
+           break;
+        default:
+            printf("WRONG CHOICE");
+    }
+    }
+   return 0;
+}
+void create_linked_list ()
+{
+    temp=((struct node*)malloc(sizeof(node)));
+    printf("Enter new element:");
+    scanf("%d",&temp->data);
+    temp->next=NULL;
+    if(start==NULL)
+    {
+        start=temp;
+        end=temp;
+    }
+    else{
+        end->next=temp;
+        end=temp;
+    }
+}
+void display ()
+{
+    if(start==NULL)
+      printf("No element found.");
+    else
+    {
+      temp=start;
+      while(temp!=NULL)
+     {
+        
+        printf("%d\n",temp->data);
+        temp=temp->next;
+     }
+    }
+}
+void sum()
+{
+    int sum=0;
+    if(start==NULL)
+      printf("0");
+    else
+    {
+      temp=start;
+      while(temp!=NULL)
+     {
+        sum+=temp->data;
+        temp=temp->next;
+     }
+      printf("\n%d\n",sum);
+    }
+}
+void search (int n)
+{
+    int count=0;
+    if(start==NULL)
+      printf("No element found.");
+    else
+    {
+      temp=start;
+      while(temp!=NULL)
+      {
+        count++;
+        if(temp->data == n)
+         { printf("Element found at %d location.\n",count);
+          return;
+         }
+        else 
+           temp=temp->next;
+      }
+      printf("Not found in list\n");
+    }
+}
+void count()
+{ 
+   int count=0;
+  if(start==NULL)
+      printf("0");
+    else
+    {
+      temp=start;
+      while(temp!=NULL)
+     {
+        count++;
+        temp=temp->next;
+     }
+     printf("\n%d\n",count);
+    }   
+}
